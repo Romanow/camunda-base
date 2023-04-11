@@ -2,23 +2,21 @@
 
 [![Build project](https://github.com/Romanow/camunda-base/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Romanow/camunda-base/actions/workflows/build.yml)
 
-## Build and run
+## Run Camunda
 
 ```shell
-# run postgres 15 in docker
+# fetch Postgres and Camunda service
+$ docker compose pull
+
+# run
 $ docker compose up -d
-
-# build project
-$ ./gradlew clean build
-
-# run Camunda
-$ ./gradlew bootRun
 
 # cleanup resources
 $ docker compose down -v
 ```
 
-## Requirements
+## Build Project
 
-1. [Java 11](https://formulae.brew.sh/formula/openjdk@11).
-2. [Docker](https://docs.docker.com/desktop/install/mac-install/).
+```
+$ ./gradlew clean build
+```
