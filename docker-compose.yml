@@ -13,5 +13,16 @@ services:
     ports:
       - "5432:5432"
 
+  camunda:
+    build: .
+    image: romanowalex/camunda-base:v1.0
+    container_name: camunda
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
 volumes:
   db-data:
