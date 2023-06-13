@@ -1,0 +1,18 @@
+image:
+  repository: romanowalex/camunda-base
+  tag: v1.0
+
+ingress:
+  enabled: true
+  name: camunda
+  domain: local
+
+profile: k8s
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1024Mi
+  limits:
+    cpu: 500m
+    memory: 1024Mi
