@@ -9,6 +9,20 @@ spring:
     hibernate.ddl-auto: update
     open-in-view: false
 
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure.include: info,health,loggers,prometheus
+  metrics.tags:
+    application: ${spring.application.name}
+  health.diskspace.enabled: false
+  endpoint.health.show-details: always
+  info.git.mode: simple
+  health:
+    readinessstate.enabled: true
+    livenessstate.enabled: true
+
 camunda:
   bpm:
     admin-user:
@@ -16,3 +30,5 @@ camunda:
       password: admin
     filter:
       create: All tasks
+    metrics:
+      enabled: true
