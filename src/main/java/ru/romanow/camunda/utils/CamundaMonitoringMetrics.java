@@ -68,153 +68,102 @@ public class CamundaMonitoringMetrics {
     }
 
     @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveIncidents() {
+    void updateShortMetrics() {
         activeIncidents.set(processEngine.getRuntimeService()
                                          .createIncidentQuery()
                                          .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveUserTasks() {
         activeUserTasks.set(processEngine.getTaskService()
                                          .createTaskQuery()
                                          .active()
                                          .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveMessageEventSubscriptions() {
         activeMessageEventSubscriptions.set(processEngine.getRuntimeService()
                                                          .createEventSubscriptionQuery()
                                                          .eventType(EventType.MESSAGE.name())
                                                          .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveSignalEventSubscriptions() {
         activeSignalEventSubscriptions.set(processEngine.getRuntimeService()
                                                         .createEventSubscriptionQuery()
                                                         .eventType(EventType.SIGNAL.name())
                                                         .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveCompensateEventSubscriptions() {
         activeCompensateEventSubscriptions.set(processEngine.getRuntimeService()
                                                             .createEventSubscriptionQuery()
                                                             .eventType(EventType.COMPENSATE.name())
                                                             .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveConditionalEventSubscriptions() {
         activeConditionalEventSubscriptions.set(processEngine.getRuntimeService()
                                                              .createEventSubscriptionQuery()
                                                              .eventType(EventType.CONDITONAL.name())
                                                              .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getExecutableJobs() {
         executableJobs.set(processEngine.getManagementService()
                                         .createJobQuery()
                                         .executable()
                                         .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getExecutableTimerJobs() {
         executableTimerJobs.set(processEngine.getManagementService()
                                              .createJobQuery()
                                              .executable()
                                              .timers()
                                              .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getTimerJobs() {
         timerJobs.set(processEngine.getManagementService()
                                    .createJobQuery()
                                    .timers()
                                    .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getMessageJobs() {
         messageJobs.set(processEngine.getManagementService()
                                      .createJobQuery()
                                      .messages()
                                      .count());
-    }
 
-    @Scheduled(fixedRate = HOUR, timeUnit = SECONDS)
-    void getUserCount() {
-        userCount.set(processEngine.getIdentityService()
-                                   .createUserQuery()
-                                   .count());
-    }
-
-    @Scheduled(fixedRate = HOUR)
-    void getTenantCount() {
-        tenantCount.set(processEngine.getIdentityService()
-                                     .createTenantQuery()
-                                     .count());
-    }
-
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveProcessInstances() {
         activeProcessInstances.set(processEngine.getRuntimeService()
                                                 .createProcessInstanceQuery()
                                                 .active()
                                                 .count());
-    }
 
-    @Scheduled(fixedRate = HOUR, timeUnit = SECONDS)
-    void getCompletedProcessInstances() {
-        completedProcessInstances.set(processEngine.getHistoryService()
-                                                   .createHistoricProcessInstanceQuery()
-                                                   .completed()
-                                                   .count());
-    }
-
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveProcessDefinitions() {
         activeProcessDefinitions.set(processEngine.getRepositoryService()
                                                   .createProcessDefinitionQuery()
                                                   .active()
                                                   .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getDeployments() {
         deployments.set(processEngine.getRepositoryService()
                                      .createDeploymentQuery()
                                      .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveExternalTasks() {
         activeExternalTasks.set(processEngine.getExternalTaskService()
                                              .createExternalTaskQuery()
                                              .active()
                                              .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveLockedExternalTasks() {
         activeLockedExternalTasks.set(processEngine.getExternalTaskService()
                                                    .createExternalTaskQuery()
                                                    .active()
                                                    .locked()
                                                    .count());
-    }
 
-    @Scheduled(fixedRate = MINUTE, timeUnit = SECONDS)
-    void getActiveNotLockedExternalTasks() {
         activeNotLockedExternalTasks.set(processEngine.getExternalTaskService()
                                                       .createExternalTaskQuery()
                                                       .active()
                                                       .notLocked()
                                                       .count());
+    }
+
+    @Scheduled(fixedRate = HOUR, timeUnit = SECONDS)
+    void updateLongMetrics() {
+        tenantCount.set(processEngine.getIdentityService()
+                                     .createTenantQuery()
+                                     .count());
+
+        userCount.set(processEngine.getIdentityService()
+                                   .createUserQuery()
+                                   .count());
+
+        completedProcessInstances.set(processEngine.getHistoryService()
+                                                   .createHistoricProcessInstanceQuery()
+                                                   .completed()
+                                                   .count());
     }
 }
