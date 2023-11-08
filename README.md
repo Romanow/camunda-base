@@ -40,6 +40,6 @@ $ helm search repo romanow
 # upload postgres and camunda service
 $ minukube image load postgres:15
 $ minukube image load romanowalex/camunda-base:v1.1
-# 
+#
 $ helm install postgres --values k8s/postgres/values.yaml romanow/postgres
 ```
