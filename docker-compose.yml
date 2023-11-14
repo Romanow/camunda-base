@@ -29,7 +29,7 @@ services:
 
   camunda:
     build: .
-    image: ${REPOSITORY_NAME}/camunda-base:v1.2
+    image: ${REPOSITORY_NAME}/camunda-base:v1.3
     container_name: camunda
     environment:
       SPRING_PROFILES_ACTIVE: docker

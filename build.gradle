@@ -18,6 +18,7 @@ targetCompatibility = "11"
 
 ext {
     camundaVersion = "7.16.0"
+    groovyVersion = "4.0.15"
     testCntainerVersion = "1.17.6"
 }
 
@@ -36,6 +37,7 @@ dependencies {
 
     implementation "org.postgresql:postgresql"
     implementation "io.micrometer:micrometer-registry-prometheus"
+    runtimeOnly "org.apache.groovy:groovy-jsr223:$groovyVersion"
 
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
