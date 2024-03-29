@@ -1,8 +1,8 @@
 plugins {
     id "idea"
-    id "java"
-    id "org.springframework.boot" version "2.7.4"
-    id "io.spring.dependency-management" version "1.1.0"
+    id "java-library"
+    id "org.springframework.boot" version "3.1.10"
+    id "io.spring.dependency-management" version "1.1.4"
     id "com.gorylenko.gradle-git-properties" version "2.4.1"
 }
 
@@ -13,13 +13,20 @@ idea {
     }
 }
 
-sourceCompatibility = "11"
-targetCompatibility = "11"
+sourceCompatibility = "17"
+targetCompatibility = "17"
 
 ext {
-    camundaVersion = "7.16.0"
-    groovyVersion = "4.0.15"
-    testCntainerVersion = "1.17.6"
+    springBootVersion = "3.1.10"
+    camundaVersion = "7.20.0"
+    groovyVersion = "4.0.20"
+    testCntainerVersion = "1.19.6"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+    }
 }
 
 repositories {

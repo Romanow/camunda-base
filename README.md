@@ -1,45 +1,33 @@
 # Camunda base
 
 [![Build project](https://github.com/Romanow/camunda-base/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Romanow/camunda-base/actions/workflows/build.yml)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
-## Run Camunda locally
+## Необходимые зависимости
+
+* Docker – [Install Docker Engine](https://docs.docker.com/engine/install/)
+* Camunda Modeller – [Download Desktop Modeler](https://camunda.com/download/modeler/)
+
+### Установка Token Simulator
 
 ```shell
-# build service
-$ ./gradlew clean build
+$ cd ~/Library/Application\ Support/camunda-modeler
+$ mkdir -p resources/plugins && cd resources/plugins
+$ git clone https://github.com/camunda/camunda-modeler-token-simulation-plugin
+```
 
-# build docker image
+## Локальный запуск
+
+```shell
+# build  project
 $ docker compose build
 
-# create docker swarm cluster
-$ docker swarm init
+# run
+$ docker compose up -d
 
-# create internal docker registry to work with local images
-$ docker service create --name registry --publish 5000:5000 registry:2.8
+# cleanup resources
+$ docker compose down -v
 
-# push local images to registry
-$ ./scripts/push-to-registry.sh
-
-# run camunda
-$ docker stack deploy -c docker-compose.yml camunda
-
-# list running services
-$ docker stack services camunda
 ```
 
-## Run Camunda in k8s
-
-```shell
-# start minikube
-$ minikube start --cpus=4 --memory=6g --driver=qemu2
-
-# add repo with charts
-$ helm repo add romanow https://romanow.github.io/helm-charts/
-
-$ helm search repo romanow
-# upload postgres and camunda service
-$ minukube image load postgres:15
-$ minukube image load romanowalex/camunda-base:v1.1
-#
-$ helm install postgres --values k8s/postgres/values.yaml romanow/postgres
-```
+После этого открываем в браузере [http://localhost:8080](http://localhost:8080/) и вводим `admin` / `admin`.

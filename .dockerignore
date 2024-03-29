@@ -1,0 +1,9 @@
+.github/
+.gradle/
+.idea/
+build/
+out/
+k8s/
+
+.env
+.pre-commit-config.yaml
