@@ -1,10 +1,20 @@
 plugins {
     id "idea"
-    id "java-library"
-    id "org.springframework.boot" version "3.1.10"
-    id "io.spring.dependency-management" version "1.1.4"
-    id "com.gorylenko.gradle-git-properties" version "2.4.1"
+    id "org.jetbrains.kotlin.jvm" version "1.9.25"
+    id "org.jetbrains.kotlin.plugin.spring" version "1.9.25"
+    id "org.springframework.boot" version "3.3.3"
+    id "io.spring.dependency-management" version "1.1.6"
+    id "org.jlleitschuh.gradle.ktlint" version "12.1.1"
 }
+
+ext {
+    kotlinVersion = "1.9.25"
+    springBootVersion = "3.3.3"
+    camundaVersion = "7.21.0"
+    groovyVersion = "4.0.23"
+    testCntainerVersion = "1.20.1"
+}
+
 
 idea {
     module {
@@ -13,15 +23,15 @@ idea {
     }
 }
 
-sourceCompatibility = "17"
-targetCompatibility = "17"
-
-ext {
-    springBootVersion = "3.1.10"
-    camundaVersion = "7.20.0"
-    groovyVersion = "4.0.20"
-    testCntainerVersion = "1.19.6"
+ktlint {
+    version.set("1.1.1")
 }
+
+repositories {
+    mavenCentral()
+}
+
+[compileKotlin, compileTestKotlin]*.kotlinOptions*.jvmTarget = "17"
 
 dependencyManagement {
     imports {
@@ -46,8 +56,8 @@ dependencies {
     implementation "io.micrometer:micrometer-registry-prometheus"
     runtimeOnly "org.apache.groovy:groovy-jsr223:$groovyVersion"
 
-    compileOnly "org.projectlombok:lombok"
-    annotationProcessor "org.projectlombok:lombok"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.testcontainers:postgresql:$testCntainerVersion"
@@ -55,6 +65,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 bootJar {

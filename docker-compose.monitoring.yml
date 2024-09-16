@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   prometheus:
     image: prom/prometheus:v2.41.0
@@ -34,17 +33,6 @@ services:
       - /:/rootfs:ro
     depends_on:
       prometheus:
-        condition: service_healthy
-
-  postgres-exporter:
-    image: bitnami/postgres-exporter:0.13.2
-    container_name: postgres-exporter
-    environment:
-      DATA_SOURCE_NAME: "postgresql://postgres:postgres@postgres:5432/postgres?sslmode=disable"
-    ports:
-      - "9187:9187"
-    depends_on:
-      postgres:
         condition: service_healthy
 
   grafana:

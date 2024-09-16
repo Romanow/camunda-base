@@ -12,12 +12,6 @@ typealias CustomPostgresContainer = PostgreSQLContainer<*>
 
 @TestConfiguration
 class DatabaseTestConfiguration {
-    companion object {
-        private const val POSTGRES_IMAGE = "postgres:15-alpine"
-        private const val DATABASE_NAME = "camunda"
-        private const val USERNAME = "program"
-        private const val PASSWORD = "test"
-    }
 
     @Bean(destroyMethod = "close")
     fun postgres(): PostgreSQLContainer<*> {
@@ -39,5 +33,12 @@ class DatabaseTestConfiguration {
         dataSource.password = PASSWORD
         dataSource.driverClassName = Driver::class.java.canonicalName
         return dataSource
+    }
+
+    companion object {
+        private const val POSTGRES_IMAGE = "postgres:15-alpine"
+        private const val DATABASE_NAME = "camunda"
+        private const val USERNAME = "program"
+        private const val PASSWORD = "test"
     }
 }

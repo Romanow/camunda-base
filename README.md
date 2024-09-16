@@ -1,7 +1,7 @@
-# Camunda base
-
 [![Build project](https://github.com/Romanow/camunda-base/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Romanow/camunda-base/actions/workflows/build.yml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+
+# Camunda base
 
 ## Необходимые зависимости
 
@@ -19,14 +19,7 @@ $ git clone https://github.com/camunda/camunda-modeler-token-simulation-plugin
 ## Локальный запуск
 
 ```shell
-# build  project
-$ docker compose build
-
-# run
-$ docker compose up -d
-
-# cleanup resources
-$ docker compose down -v
+$ docker compose up -d --wait
 
 ```
 

@@ -11,11 +11,6 @@ providers:
     options:
       path: /etc/grafana/provisioning/dashboards/dashboards/node-exporter.json
 
-  - name: "Postgres Exporter"
-    type: file
-    options:
-      path: /etc/grafana/provisioning/dashboards/dashboards/postgres-exporter.json
-
   - name: "Prometheus"
     type: file
     options:
