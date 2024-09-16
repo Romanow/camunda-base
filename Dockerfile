@@ -3,7 +3,7 @@ FROM amazoncorretto:17 as builder
 WORKDIR application
 COPY . .
 
-RUN ./gradlew clean build && \
+RUN ./gradlew clean assemble && \
     mv build/libs/camunda-base.jar application.jar && \
     java -Djarmode=layertools -jar application.jar extract
 
