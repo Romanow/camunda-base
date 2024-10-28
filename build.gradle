@@ -12,7 +12,7 @@ ext {
     springBootVersion = "3.3.3"
     camundaVersion = "7.21.0"
     groovyVersion = "4.0.23"
-    testCntainerVersion = "1.20.1"
+    testCntainerVersion = "1.20.3"
 }
 
 
