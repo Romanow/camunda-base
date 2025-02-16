@@ -31,5 +31,14 @@ jobs:
           tags: romanowalex/camunda-base:v2.0
           push: true
 
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          repository: romanowalex/camunda-base
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          short-description: ${{ github.event.repository.description }}
+          enable-url-completion: true
+
       - name: Create release
         uses: softprops/action-gh-release@v2

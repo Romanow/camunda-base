@@ -5,26 +5,20 @@
 
 # Camunda base
 
-## Необходимые зависимости
+## Локальный запуск
 
-* Docker – [Install Docker Engine](https://docs.docker.com/engine/install/)
-* Camunda Modeller – [Download Desktop Modeler](https://camunda.com/download/modeler/)
+Используем [docker-compose.yml](docker-compose.yml)
 
-### Установка Token Simulator
+```shell
+$ docker compose up -d --wait
+```
+
+После этого открываем в браузере [http://localhost:8080](http://localhost:8080/) и вводим `admin` / `admin`.
+
+## Установка Token Simulator
 
 ```shell
 $ cd ~/Library/Application\ Support/camunda-modeler
 $ mkdir -p resources/plugins && cd resources/plugins
 $ git clone https://github.com/camunda/camunda-modeler-token-simulation-plugin
 ```
-
-## Локальный запуск
-
-Использовать [Docker Compose](docker-compose.yml):
-
-```shell
-$ docker compose up -d --wait
-
-```
-
-После этого открываем в браузере [http://localhost:8080](http://localhost:8080/) и вводим `admin` / `admin`.

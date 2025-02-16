@@ -12,14 +12,14 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
       - ./docker/postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
 
   camunda:
     build: .
-    image: ${REPOSITORY_NAME}/camunda-base:v2.0
+    image: romanowalex/camunda-base:v2.0
     container_name: camunda
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -35,4 +35,4 @@ services:
         condition: service_healthy
 
 volumes:
-  postgres-data:
+  postgres:
