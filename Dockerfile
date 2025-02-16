@@ -1,4 +1,4 @@
-FROM amazoncorretto:17 as builder
+FROM amazoncorretto:17 AS builder
 
 WORKDIR application
 COPY . .
