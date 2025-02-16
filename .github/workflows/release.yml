@@ -24,10 +24,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build images
-        timeout-minutes: 15
-        run: docker compose build
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
