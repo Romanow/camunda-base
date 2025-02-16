@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
-          tags: romanowalex/camunda-base:v2.0
+          tags: romanowalex/camunda-base:${{ github.ref_name }}
           push: true
 
       - name: Docker Hub Description
