@@ -5,6 +5,8 @@
 
 # Camunda base
 
+GitHub: [romanow/camunda-base](https://github.com/Romanow/camunda-base).
+
 ## Локальный запуск
 
 Используем [docker-compose.yml](docker-compose.yml)
